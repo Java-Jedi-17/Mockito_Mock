@@ -15,4 +15,13 @@ class GeoServiceImplTest {
         Location preferences = geoService.byIp(ip);
         Assertions.assertEquals(expected.getCountry(), preferences.getCountry());
     }
+
+    @Test()
+    void testExpectedException() {
+        RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
+            var exception = new GeoServiceImpl();
+            exception.byCoordinates(1, 1);
+        });
+        Assertions.assertEquals("Not implemented", thrown.getMessage());
+    }
 }
